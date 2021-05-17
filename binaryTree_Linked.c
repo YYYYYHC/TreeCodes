@@ -1,6 +1,12 @@
 #include<stdio.h>
 #include<stdlib.h>
 #define DataType char
+
+int myMax(int a,int b)
+{
+    return (a>b?a:b);
+}
+
 typedef struct BinTreeNode
 {
     DataType info;
@@ -25,6 +31,23 @@ typedef struct BinTreeNode
 //     parent->rchild = rchild;
 // }
 
+int GetBinTreeNodeNum(PBinTree T)
+{
+    if(T==NULL)
+        return 0;
+    else
+        return 1+GetBinTreeNodeNum(T->lchild)+GetBinTreeNodeNum(T->rchild);
+
+}
+
+int GetBinTreeDepth(PBinTree T)
+{
+    if(T==NULL)
+        return 0;
+    else
+        return 1+myMax(GetBinTreeDepth(T->lchild),GetBinTreeDepth(T->rchild));
+}
+
 PBinTree InputBinTree(PBinTree T)
 {
     DataType input = getchar();
@@ -35,9 +58,10 @@ PBinTree InputBinTree(PBinTree T)
     }
     else{
         T = (PBinTree)malloc(sizeof(BinTreeNode));
-        
         T->info = input;
+
         T->lchild = InputBinTree(T->lchild);
+        
         T->rchild = InputBinTree(T->rchild);
     }
     return T;
@@ -53,8 +77,9 @@ void InOrderTraverse(PBinTree T)
     if(T!=NULL){
         
         InOrderTraverse(T->lchild);
-        InOrderTraverse(T->rchild);
         printf("%c ",T->info);
+        InOrderTraverse(T->rchild);
+        
     }
     return;
 }

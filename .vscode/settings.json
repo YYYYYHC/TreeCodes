@@ -1,6 +1,42 @@
-{
-  "C_Cpp_Runner.cCompilerPath": "C:\\MinGW\\bin\\gcc.exe",
-  "C_Cpp_Runner.cppCompilerPath": "C:\\MinGW\\bin\\g++.exe",
-  "C_Cpp_Runner.debuggerPath": "C:\\MinGW\\bin\\gdb.exe",
-  "C_Cpp_Runner.makePath": "C:\\MinGW\\bin\\mingw32-make.exe"
-}
+{"files.exclude": {
+
+    "**/.git": true,
+    
+    "**/.svn": true,
+    
+    "**/.hg": true,
+    
+    "**/CVS": true,
+    
+    "**/.DS_Store": true,
+    
+    "**/tmp": true,
+    
+    "**/node_modules": true,
+    
+    "**/bower_components": true,
+    
+    "**/dist": true
+    
+    },
+    
+    "files.watcherExclude": {
+    
+    "**/**": true,
+    
+    "**/.git/objects/**": true,
+    
+    "**/.git/subtree-cache/**": true,
+    
+    "**/node_modules/**": true,
+    
+    "**/tmp/**": true,
+    
+    "**/bower_components/**": true,
+    
+    "**/dist/**": true
+    
+    },
+    
+    "search.followSymlinks": false   
+}    
