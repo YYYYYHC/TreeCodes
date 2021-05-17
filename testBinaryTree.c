@@ -10,6 +10,8 @@ void test()
 
 int main()
 {
+    int x;
     test();
+    scanf("%d",&x);
     return 0;
 }
