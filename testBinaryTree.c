@@ -5,7 +5,10 @@ void test()
 {
     PBinTree testTree = (PBinTree)malloc(sizeof(BinTreeNode));
     testTree = InputBinTree(testTree);
-    InOrderTraverse(testTree);
+    // inOrderTraverse(testTree);
+    // PreOrderTraverse_stack(testTree);
+    // InOrderTraverse(testTree);
+    PostOrderTraverse_stack(testTree);
 }
 
 int main()

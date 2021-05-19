@@ -1,35 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
-#define DataType char
-
-int myMax(int a,int b)
-{
-    return (a>b?a:b);
-}
-
-typedef struct BinTreeNode
-{
-    DataType info;
-    struct BinTreeNode * lchild;
-    struct BinTreeNode * rchild;
-    // struct BinTreeNode * parent; 
-}BinTreeNode,*PBinTree;
-
-// PBinTree CreateBinTree(DataType info )
-// {
-//     PBinTree root = (BinTreeNode*)malloc(sizeof(BinTreeNode));
-//     root->lchild = NULL;
-//     root->rchild = NULL;
-//     return root;
-// }
-
-// void AddBinTreeNode(PBinTree parent,DataType linfo,DataType rinfo)
-// {
-//     PBinTree lchild = CreateBinTree(linfo);
-//     PBinTree rchild = CreateBinTree(rinfo);
-//     parent->lchild = lchild;
-//     parent->rchild = rchild;
-// }
+#include"Linkstack.c"
 
 int GetBinTreeNodeNum(PBinTree T)
 {
@@ -82,4 +53,73 @@ void InOrderTraverse(PBinTree T)
         
     }
     return;
+}
+
+void PreOrderTraverse_stack(PBinTree T)
+{
+    PBinTree TT = T;
+    PLinkStack TS = createEmptyStack_link();
+    do{
+        while(TT!=NULL){
+            printf("%c",TT->info);
+            push_link(TS,TT);
+            TT = TT->lchild;
+        }
+        if(!isEmptyStack_link(TS)){
+            TT = pop_link(TS);
+            TT = TT->rchild;
+        }
+    }while(TT!=NULL||!isEmptyStack_link(TS));
+}
+
+void InOrderTraverse_stack(PBinTree T)
+{
+    PBinTree TT = T;
+    PLinkStack TS = createEmptyStack_link();
+    do{
+        while(TT!=NULL){
+            push_link(TS,TT);
+            TT = TT->lchild;
+        }
+        if(!isEmptyStack_link(TS)){
+            TT = pop_link(TS);
+            printf("%c",TT->info);
+            TT = TT->rchild;
+        }
+    }while(TT!=NULL||!isEmptyStack_link(TS));
+}
+
+void PostOrderTraverse_stack(PBinTree T)
+{
+    PBinTree TT = T;
+    struct Node* TN = (struct Node * )malloc(sizeof(struct Node));
+    TN->tag = 'L';
+    PLinkStack TS = createEmptyStack_link();
+    do
+    {
+        while (TT!=NULL)
+        {
+            if (TN->tag!='R') push_link_b(TS,TT,'L');
+            TT = TT->lchild;
+        }
+        int continueNum = 1;
+        while (continueNum && !isEmptyStack_link(TS))
+        {
+            TN = pop_link_b(TS);
+            TT = TN->info;
+            switch (TN->tag)
+            {
+            case 'L':
+                continueNum = 0;
+                push_link_b(TS,TT,'R');
+                TT = TT->rchild;//!!!!!
+                break;
+            case 'R':
+                printf("%c",TT->info);
+                break;
+            }
+        }
+    } while (TT!=NULL||!isEmptyStack_link(TS));
+    
+
 }
